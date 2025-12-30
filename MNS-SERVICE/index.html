@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>MNS — Agence Digitale Professionnelle</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#0b0f1a;color:#e5e7eb;line-height:1.7;}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;background:rgba(11,15,26,.95);display:flex;justify-content:center;gap:30px;padding:15px;z-index:1000;}
+nav a{font-weight:500;transition:.3s;}
+nav a:hover{color:#22c55e}
+
+/* HEADER */
+header{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 60px;background:linear-gradient(135deg,#020617,#0b0f1a);}
+.hero{max-width:900px;animation:fadeUp 1.2s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+
+.logo{width:120px;height:120px;margin:auto}
+.logo circle{fill:#020617;stroke:#22c55e;stroke-width:4}
+.logo text{fill:#22c55e;font-size:36px;font-weight:700}
+
+header h1{font-size:3rem;margin:20px 0}
+header p{opacity:.85}
+
+.btn{display:inline-block;margin-top:30px;padding:15px 35px;background:#22c55e;color:#020617;border-radius:40px;font-weight:600;transition:.3s;}
+.btn:hover{transform:scale(1.05)}
+
+/* SECTIONS */
+section{max-width:1200px;margin:auto;padding:90px 20px;}
+h2{text-align:center;font-size:2.3rem;margin-bottom:20px;}
+.desc{text-align:center;opacity:.8;margin-bottom:50px;}
+
+/* SERVICES */
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;}
+.card{background:#020617;padding:25px;border-radius:18px;cursor:pointer;transition:.4s;position:relative;}
+.card:hover{transform:translateY(-8px)}
+.card h3{color:#22c55e;margin-bottom:10px}
+
+/* Gallery images */
+.gallery{display:none;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:15px;margin-top:20px;}
+.gallery img{width:100%;border-radius:12px;transition:.4s;cursor:pointer;border:2px solid #22c55e;}
+.gallery img:hover{transform:scale(1.1);}
+
+/* Stars feedback */
+.star-container{display:flex;gap:3px;margin-top:5px;}
+.star{font-size:18px;color:#888;cursor:pointer;transition:.3s}
+.star:hover,.star.active{color:#facc15}
+
+/* Example slider */
+.slider{display:flex;gap:20px;overflow-x:auto;padding-bottom:20px;}
+.example{min-width:240px;background:#020617;border-radius:16px;padding:20px;position:relative;}
+.example span{display:block;margin-top:10px;color:#22c55e;font-size:14px;}
+.example img{width:100%;border-radius:12px;margin-top:10px;cursor:pointer;transition:.3s;border:2px solid #22c55e;}
+.example img:hover{transform:scale(1.1);}
+
+/* Conditions */
+.conditions{background:#020617;padding:50px;border-radius:20px;}
+.conditions p{margin-bottom:20px}
+
+/* Footer */
+footer{background:#020617;padding:50px 20px;text-align:center;}
+footer a{color:#22c55e;margin:0 10px;font-weight:600}
+footer p{font-size:14px;opacity:.7;margin-top:15px}
+
+/* CHATBOT */
+#chatBtn{position:fixed;right:20px;bottom:20px;width:60px;height:60px;border-radius:50%;background:#22c55e;color:#020617;display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;z-index:1000;}
+#chatBox{position:fixed;right:20px;bottom:90px;width:360px;background:#020617;border-radius:20px;display:none;flex-direction:column;overflow:hidden;z-index:1000;}
+.chat-header{background:#0b0f1a;padding:12px;display:flex;justify-content:space-between;align-items:center;color:#22c55e;}
+.chat-body{padding:15px;height:300px;overflow-y:auto;}
+.msg{padding:10px 14px;border-radius:16px;margin-bottom:10px;font-size:14px;opacity:0;animation:fadeIn 0.5s forwards;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.bot{background:#1f2937}
+.user{background:#22c55e;color:#020617;margin-left:auto}
+.chat-input{display:flex}
+.chat-input input{flex:1;padding:12px;border:none;background:#020617;color:#fff;}
+.chat-input button{background:#22c55e;border:none;padding:0 18px;font-weight:700;cursor:pointer}
+
+/* Responsive */
+@media(max-width:600px){header h1{font-size:2.2rem}}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#services">Services</a>
+  <a href="#examples">Exemples</a>
+  <a href="#conditions">Conditions</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<header>
+  <div class="hero">
+    <svg class="logo" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="46"/>
+      <text x="50%" y="56%" text-anchor="middle">MNS</text>
+    </svg>
+    <h1>MNS — Agence Digitale</h1>
+    <p>Design • Sites Web • Affiches • Impact social</p>
+    <a class="btn" href="#services">Découvrir</a>
+  </div>
+</header>
+
+<section id="services">
+<h2>Nos Services</h2>
+<p class="desc">Clique sur un service pour voir les réalisations</p>
+
+<div class="services">
+  <div class="card" onclick="toggleGallery(this)">
+    <h3>Sites Web Professionnels</h3>
+    <p>Sites modernes et rapides.</p>
+    <div class="gallery">
+      <img src="https://picsum.photos/300/200?1"><div class="star-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <img src="https://picsum.photos/300/200?2"><div class="star-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <img src="https://picsum.photos/300/200?3"><div class="star-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <img src="https://picsum.photos/300/200?4"><div class="star-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <img src="https://picsum.photos/300/200?5"><div class="star-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <img src="https://picsum.photos/300/200?6"><div class="star-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+    </div>
+  </div>
+
+  <div class="card" onclick="toggleGallery(this)">
+    <h3>Affiches & Flyers</h3>
+    <p>Publicité visuelle impactante.</p>
+    <div class="gallery">
+      <img src="images/bus2.png"><div class="star-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <img src="images/bus3.png"><div class="star-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <img src="images/bus4.png"><div class="star-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <img src="images/bus5.png"><div class="star-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <img src="images/bus6.png"><div class="star-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <img src="images/bus7.png"><div class="star-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="examples">
+<h2>Exemples de sites & affiches</h2>
+<div class="slider">
+  <div class="example"><img src="images/8.png"><span>Site Business</span></div>
+  <div class="example"><img src="images/bus2.png"><span>Site Restaurant</span></div>
+  <div class="example"><img src=""><span>Site Portfolio</span></div>
+  <div class="example"><img src="images/2.png"><span>Affiche Marketing</span></div>
+  <div class="example"><img src="images/4.png"><span>Affiche Événement</span></div>
+</div>
+</section>
+
+<section id="conditions">
+<h2>À propos & Conditions</h2>
+<div class="conditions">
+<p>MNS est une agence digitale engagée dans la création de solutions numériques accessibles à tous. Nous aidons les entreprises et associations à avoir un impact visuel fort.</p>
+<p>Une partie des revenus générés sert à soutenir des associations locales et projets sociaux.</p>
+<p>Nos services sont numériques, professionnels et livrés avec sérieux. Chaque projet est traité avec créativité et rapidité.</p>
+<p>Nous garantissons confidentialité, sécurité et satisfaction pour chaque client.</p>
+<p>En utilisant nos services, vous acceptez nos conditions générales et notre engagement éthique.</p>
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p class="desc">WhatsApp : <strong>0984 944 188</strong></p>
+</section>
+
+<footer>
+<a href="#">WhatsApp</a>
+<a href="#">Facebook</a>
+<a href="#">TikTok</a>
+<p>© 2025 MNS — Site web créé pour générer des gains et aider les associations.</p>
+</footer>
+
+<!-- CHATBOT -->
+<div id="chatBtn">💬</div>
+<div id="chatBox">
+<div class="chat-header">
+<span>MNS Assistant</span>
+<button onclick="toggleChat()">✖</button>
+</div>
+<div class="chat-body" id="chat"></div>
+<div class="chat-input">
+<input id="chatInput" placeholder="Votre question...">
+<button onclick="send()">➤</button>
+</div>
+</div>
+
+<script>
+// Toggle service gallery
+function toggleGallery(card){
+  const g=card.querySelector('.gallery');
+  g.style.display=(g.style.display==='grid')?'none':'grid';
+}
+
+// Toggle chatbot
+const chatBtn=document.getElementById("chatBtn");
+const chatBox=document.getElementById("chatBox");
+chatBtn.onclick=toggleChat;
+function toggleChat(){chatBox.style.display=(chatBox.style.display==='flex')?'none':'flex';}
+
+// Chatbot messages
+const chat=document.getElementById("chat");
+const input=document.getElementById("chatInput");
+function addMsg(t,c){
+  const d=document.createElement("div");
+  d.className="msg "+c;
+  d.innerHTML=t;
+  chat.appendChild(d);
+  chat.scrollTop=chat.scrollHeight;
+}
+function send(){
+  const t=input.value.trim();
+  if(!t)return;
+  addMsg(t,"user");
+  input.value="";
+  setTimeout(()=>addMsg(reply(t),"bot"),400);
+}
+function reply(t){
+  t=t.toLowerCase();
+  if(t.includes("prix")) return "Nos prix vont de 1$ à 5$ selon le service.";
+  if(t.includes("contact")) return "WhatsApp : 0984 944 188";
+  if(t.includes("site")) return "Nous créons des sites modernes et professionnels.";
+  if(t.includes("affiche")) return "Nous concevons des affiches publicitaires.";
+  if(t.includes("bonjour")||t.includes("salut")) return "Bonjour 👋 ! Comment puis-je vous aider ?";
+  return "Je suis l’assistant MNS. Posez votre question.";
+}
+
+// Star rating
+document.querySelectorAll(".star").forEach(star=>{
+  star.addEventListener("click",()=>{star.parentNode.querySelectorAll(".star").forEach(s=>s.classList.remove("active"));star.classList.add("active");});
+});
+</script>
+
+</body>
+</html>
